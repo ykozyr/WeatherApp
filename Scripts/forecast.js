@@ -8,7 +8,7 @@ const key = 'PGoEgAHY7GiYxRnJBGMt9iwB7wSaFp0c';
 // We want to pass through the City id(key) into the getWeather function
 const getWeather = async (id) => {
 
-    const base = 'https://dataservice.accuweather.com/currentconditions/v1/';
+    const base = 'http://dataservice.accuweather.com/currentconditions/v1/';
     // There's no ? before id because it's part of the URL and not a query parameter
     // The query parameter is just the apikey for the Current Conditions API Endpoint
     const query = `${id}?apikey=${key}`;
@@ -22,7 +22,7 @@ const getWeather = async (id) => {
 // Get City Information
 const getCity = async (city) => {
     // Base URL off the API Endpoint that we want to make the request to
-    const base = 'https://dataservice.accuweather.com/locations/v1/cities/search'
+    const base = 'http://dataservice.accuweather.com/locations/v1/cities/search'
     // We also need the Query Parameters at the end
     // ? indicates that we are adding query parameters at the end of the URL
     // Instead of just a string with the pasted API Key, we create a template
