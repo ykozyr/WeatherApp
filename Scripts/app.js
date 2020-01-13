@@ -9,6 +9,11 @@ const time = document.querySelector('img.time');
 // div with class of icon and the image inside of that div
 const icon = document.querySelector('.icon img');
 
+// !!UPDATE: We need to indicate the Forecast Class as a Const
+// We're calling this new constructor form forecast.js
+// Now, whenever we're calling a method, we need to call it from the Forecast constructor
+const forecast = new Forecast();
+
 // We're updating the user view with the input/retrieved values
 // Created local consts of the data from getCity and getWeather data
 // Local consts just provide ease of use for the programming end
@@ -45,18 +50,21 @@ const updateUI = (data) => {
     };
 
 
+// !!UPDATE: COMMENTED OUT B/C ADDED THIS METHOD IN THE FORECAST CLASS!!
+// !!FORECAST CLASS LOCATED ON forecast.js!!
+
 // We're externalizing the function and calling it below later
 // Within the function, we'll be calling getCity and getWeather
-const updateCity = async (city) => {
+// const updateCity = async (city) => {
     // Here we get city details from getCity using the user input 'city'
-    const cityDets = await getCity(city);
-    // Here, we pass the city Key from getCity to getWeather 
-    // We thus will get the weather for that city Key
-    const weather = await getWeather(cityDets.Key);
+    // const cityDets = await getCity(city);
+    // // Here, we pass the city Key from getCity to getWeather 
+    // // We thus will get the weather for that city Key
+    // const weather = await getWeather(cityDets.Key);
     
-    // We're returning data in the form of an object with the city and the weather
-    return {cityDets, weather};
-};
+    // // We're returning data in the form of an object with the city and the weather
+    // return {cityDets, weather};
+// };
 
 // Here, we're listening for a user submitting a typed city value on the app
 cityForm.addEventListener('submit', e => {
@@ -68,7 +76,8 @@ cityForm.addEventListener('submit', e => {
 
     // Update the UI with the new city
     // Because async returns promises, we can tack on a .then method
-    updateCity(city)
+    // !!UPDATE: MODIFYING WITH NEWLY CREATED FORECAST CLASS (forecast.js)
+    forecast.updateCity(city)
         .then(data => updateUI(data))
         .catch(err => console.log(err));
 
@@ -76,8 +85,9 @@ cityForm.addEventListener('submit', e => {
     localStorage.setItem('city', city);
 });
 
+// !!UPDATE: MODIFYING WITH NEWLY CREATED FORECAST CLASS (forecast.js)
 if(localStorage.getItem('city')){
-    updateCity(localStorage.getItem('city'))
+    forecast.updateCity(localStorage.getItem('city'))
     .then(data => updateUI(data))
     .catch(err => console.log(err));
 }
