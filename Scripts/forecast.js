@@ -2,7 +2,7 @@
 
 
 // API Key from AccuWeather - Usage <= 50 Times/Day ONLY
-const key = 'wsD38jNK8fJRXr5OXAOfmT413lS5GVYn';
+const key = 'PGoEgAHY7GiYxRnJBGMt9iwB7wSaFp0c';
 
 // Get Weather Information
 // We want to pass through the City id(key) into the getWeather function
